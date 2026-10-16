@@ -5,6 +5,7 @@
 # Programmer: Alexey Makarenko
 
 import snail
+from ai import ai
 
 snail.test()
 print("Hi! its start of great project")
@@ -24,6 +25,7 @@ async def home():
             <h1>Добро пожаловать в Сналма HR! 🐌</h1>
             <p>Единая цифровая платформа для сотрудников.</p>
             <a href="/profile">Перейти в профиль</a>
+            <a>{chat(hello)}<a>
         </body>
     </html>
     """
