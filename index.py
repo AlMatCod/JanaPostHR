@@ -6,6 +6,7 @@
 
 from fastapi import FastAPI
 from fastapi.responses import HTMLResponse
+from fastapi.staticfiles import StaticFiles
 import snail
 from ai import ai
 
@@ -14,6 +15,7 @@ print("Hi! its start of great project")
 
 
 app = FastAPI()
+app.mount("/style", StaticFiles(directory="style"), name="style")
 
 @app.get("/", response_class=HTMLResponse)
 async def home():
@@ -21,19 +23,21 @@ async def home():
     <html>
         <head>
            <title>Snalma HR</title>
-           <body style="font-family: Arial;">
+           <link rel="icon" type="image/png" href="logo2.png">
+           <link rel="stylesheet" href="style/style.css">
         </head>
-
-        <header>
-         <h1>Добро пожаловать в Сналма HR! 🐌</h1>
-        </header>
-        <head>
+        <body>
+         <header style="background-color: #c90e07; color; white; padding: 30px;">
+          <style></style>
+          <h1>Добро пожаловать в Snalma-HR! 🐌</h1>
+         </header>
+         <head>
             <p>Единая цифровая платформа для сотрудников.</p>  
-            <a>{ai.chat("hello")}</a>
-        </head>
-        <footer>
+            <a>{ai.chat("test")}</a>
+         </head>
+         <footer style="background-color: #c90e07; color; white; padding: 30px;">
           <h3>Все права наверно защищены Snalma 2026</h3>
-        </footer>
+         </footer>
         </body>
     </html>
     """
