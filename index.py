@@ -18,14 +18,14 @@ app = FastAPI()
 @app.get("/", response_class=HTMLResponse)
 async def home():
     # Вот так Python может прямо в коде отдать кусок HTML
-    return """
+    return f"""
     <html>
         <head><title>Сналма HR</title></head>
         <body style="font-family: Arial;">
             <h1>Добро пожаловать в Сналма HR! 🐌</h1>
             <p>Единая цифровая платформа для сотрудников.</p>
             <a href="/profile">Перейти в профиль</a>
-            <a>{chat(hello)}<a>
+            <a>{ai.chat("hello")}</a>
         </body>
     </html>
     """
