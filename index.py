@@ -20,22 +20,24 @@ app.mount("/style", StaticFiles(directory="style"), name="style")
 @app.get("/", response_class=HTMLResponse)
 async def home():
     return f"""
-    <html>
+   <html>
         <head>
            <title>Snalma HR</title>
-           <link rel="icon" type="image/png" href="logo2.png">
-           <link rel="stylesheet" href="style/style.css">
+           <link rel="icon" type="image/png" href="/style/logo2.png">
+           <link rel="stylesheet" href="/style/style.css">
         </head>
         <body>
-         <header style="background-color: #c90e07; color; white; padding: 30px;">
-          <style></style>
-          <h1>Добро пожаловать в Snalma-HR! 🐌</h1>
+         <header style="background-color: #c90e07; color: white; padding: 20px 30px; display: flex; align-items: center; justify-content: space-between;">
+          <h1 style="margin: 0;">Добро пожаловать в Snalma-HR!</h1>
+          <img src="/style/logo2.png" width="120" alt="Logo">
          </header>
-         <head>
+         
+         <main style="padding: 20px;">
             <p>Единая цифровая платформа для сотрудников.</p>  
-            <a>{ai.chat("test")}</a>
-         </head>
-         <footer style="background-color: #c90e07; color; white; padding: 30px;">
+            <p>{ai.chat("test")}</p>
+         </main>
+         
+         <footer style="background-color: #c90e07; color: white; padding: 30px;">
           <h3>Все права наверно защищены Snalma 2026</h3>
          </footer>
         </body>
