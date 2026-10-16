@@ -4,28 +4,36 @@
 
 # Programmer: Alexey Makarenko
 
+from fastapi import FastAPI
+from fastapi.responses import HTMLResponse
 import snail
 from ai import ai
 
 snail.test()
 print("Hi! its start of great project")
 
-from fastapi import FastAPI
-from fastapi.responses import HTMLResponse
 
 app = FastAPI()
 
 @app.get("/", response_class=HTMLResponse)
 async def home():
-    # Вот так Python может прямо в коде отдать кусок HTML
     return f"""
     <html>
-        <head><title>Сналма HR</title></head>
-        <body style="font-family: Arial;">
-            <h1>Добро пожаловать в Сналма HR! 🐌</h1>
-            <p>Единая цифровая платформа для сотрудников.</p>
-            <a href="/profile">Перейти в профиль</a>
+        <head>
+           <title>Snalma HR</title>
+           <body style="font-family: Arial;">
+        </head>
+
+        <header>
+         <h1>Добро пожаловать в Сналма HR! 🐌</h1>
+        </header>
+        <head>
+            <p>Единая цифровая платформа для сотрудников.</p>  
             <a>{ai.chat("hello")}</a>
+        </head>
+        <footer>
+          <h3>Все права наверно защищены Snalma 2026</h3>
+        </footer>
         </body>
     </html>
     """
