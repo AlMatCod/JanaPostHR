@@ -1,6 +1,12 @@
+.source-sans-3-<uniquifier> {
+  font-family: "Unbounded", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: <weight>;
+  font-style: normal;
+}
 h3 {
     position: center;
-    font-family: 'Unbounded', Unbounded; /* Название шрифта */
+    font-family: 'Unbounded', sans-serif; /* Название шрифта */
     font-size: 20px; /* Размер шрифта */
 }   
 body {
