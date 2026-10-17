@@ -4,3 +4,4 @@ __pycache__/
 .env
 .env.example
 snalma.db
+.idea/
