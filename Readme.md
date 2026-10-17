@@ -1,8 +1,4 @@
-##█████ ████  █  █ 
-##  █       █ █  █ 
-##  █    ███  █████
-##  █       █    █ 
-##  █   ████     █ 
+#JanaPostHR Blablacodr
 
 # 🔥Made by #34Team🔥
 # For Post-Tech Hackathon 2026
