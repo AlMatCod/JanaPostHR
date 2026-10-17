@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block content %}
+<h1 style="font-size:2rem">Jana Academy</h1>
+<div class="grid">
+  {% for c in rows %}
+  <section class="card s6">
+    <h2><a href="/academy/{{ c.id }}">{{ c.title }}</a></h2>
+    <p class="muted">{{ c.description }}</p>
+    <div class="bar-p"><i style="width:{{ c.progress }}%"></i></div>
+    <p>{{ c.progress }}%{% if c.completed %} · пройден, результат {{ c.score }}%{% elif c.score is not none %} · последний результат {{ c.score }}%{% endif %}</p>
+    <a class="btn sm" href="/academy/{{ c.id }}">{{ 'Повторить' if c.completed else 'Открыть курс' }}</a>
+  </section>
+  {% else %}<p class="muted">Курсы пока не назначены.</p>{% endfor %}
+</div>
+{% endblock %}

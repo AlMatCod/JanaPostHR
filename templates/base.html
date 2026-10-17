@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="{{ 'kk' if lang == 'kz' else 'ru' }}">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{% block title %}Jańa Post HR{% endblock %}</title>
+<link rel="icon" type="image/png" href="/style/logo.png">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;600;700;800&display=swap">
+<link rel="stylesheet" href="/style/style.css">
+</head>
+<body>
+<header class="top"><div class="wrap bar">
+  <a class="brand" href="/"><img src="/style/logo.png" alt="Jańa Post"><span>HR</span></a>
+  {% if user %}
+  <nav>
+    {% for href, key in [('/', 'nav_home'), ('/requests', 'nav_requests'), ('/academy', 'nav_academy'), ('/ai', 'nav_ai')] %}
+    <a href="{{ href }}" class="{{ 'on' if page == href }}">{{ t(key) }}</a>
+    {% endfor %}
+  </nav>
+  {% endif %}
+  <div class="right">
+    <span class="lang"><a href="/lang/kz" class="{{ 'on' if lang == 'kz' }}">Қаз</a><a href="/lang/ru" class="{{ 'on' if lang == 'ru' }}">Рус</a></span>
+    {% if user %}
+    <a class="bell" href="/notifications">{{ t('nav_notifications') }}{% if unread %}<span class="badge-n">{{ unread }}</span>{% endif %}</a>
+    <span class="chip">{{ user.full_name }} · {{ ROLE[user.role] }}</span>
+    <a class="btn ghost sm" href="/logout">{{ t('logout') }}</a>
+    {% endif %}
+  </div>
+</div></header>
+<main class="wrap">{% block content %}{% endblock %}</main>
+<footer><div class="wrap">
+  <div class="cols">
+    <div><img src="/style/logo.png" alt="Jańa Post"><p>IT-логистическая компания</p></div>
+    <div><a href="/">Кабинет</a><a href="/requests">Заявки</a><a href="/academy">Jana Academy</a><a href="/ai">AI Jana</a></div>
+  </div>
+  <small>Все права наверное защитены · #34teams · Post-Tech Hackathon 2026</small>
+</div></footer>
+</body>
+</html>

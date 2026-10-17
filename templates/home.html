@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="hero">
+  <div>
+    <h1>{{ t('hero_title') }}</h1>
+    <p class="lead">{{ t('hero_sub') }}</p>
+  </div>
+  <form class="card login" method="post" action="/login">
+    <h2>{{ t('login') }}</h2>
+    {% if error %}<p class="err">{{ error }}</p>{% endif %}
+    <label>Логин<input name="login" id="login" required autocomplete="username"></label>
+    <label>Пароль<input name="password" id="password" type="password" required autocomplete="current-password"></label>
+    <button class="btn" type="submit">{{ t('login') }}</button>
+    <div class="demo">
+      Тестовые аккаунты, пароль demo123:<br>
+      <button type="button" data-l="aigerim">Сотрудник</button><button type="button" data-l="marat">Руководитель</button><button type="button" data-l="dana">HR</button>
+    </div>
+  </form>
+</section>
+<script>
+document.querySelectorAll('.demo button').forEach(b => b.onclick = () => {
+  document.getElementById('login').value = b.dataset.l;
+  document.getElementById('password').value = 'demo123';
+});
+</script>
+{% endblock %}

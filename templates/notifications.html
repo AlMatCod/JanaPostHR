@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% block content %}
+<h1 style="font-size:2rem">{{ t('nav_notifications') }}</h1>
+<section class="card">
+  {% for n in rows %}
+  <div class="note"><a href="{{ n.link }}">{{ n.text }}</a> <span class="muted">· {{ n.at }}</span></div>
+  {% else %}<p class="muted">Уведомлений пока нет. Они появятся при смене статуса заявки или назначении курса.</p>{% endfor %}
+</section>
+{% endblock %}

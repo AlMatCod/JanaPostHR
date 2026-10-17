@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+{% block content %}
+<h1 style="font-size:2rem">{{ user.full_name }}</h1>
+{% if todo %}
+<div class="card todo" style="margin-bottom:20px"><b>Ждут вашего решения: {{ todo }}</b> · <a href="/requests">Открыть заявки</a></div>
+{% endif %}
+<div class="grid">
+  <section class="card s8">
+    <h2>{{ t('profile') }}</h2>
+    <dl class="kv">
+      <dt>Компания</dt><dd>{{ user.company }}</dd>
+      <dt>Должность</dt><dd>{{ user.position }}</dd>
+      <dt>Подразделение</dt><dd>{{ user.department }}</dd>
+      <dt>Руководитель</dt><dd>{{ boss.full_name if boss else '—' }}</dd>
+      <dt>Дата приёма</dt><dd>{{ user.hire_date }}</dd>
+    </dl>
+  </section>
+  <section class="card s4">
+    <h2>{{ t('leave_left') }}</h2>
+    <div class="big">{{ user.leave_days }}</div>
+    <p class="muted">{{ t('days') }} · данные только для чтения</p>
+  </section>
+  <section class="card s12">
+    <h2>{{ t('services') }}</h2>
+    <div class="services">
+      <a class="btn" href="/requests?type=vacation">Заявка на отпуск</a>
+      <a class="btn" href="/requests?type=advance">Заявка на аванс</a>
+      <a class="btn ghost" href="/academy">Jana Academy</a>
+      <a class="btn ghost" href="/ai">{{ t('ask_ai') }}</a>
+    </div>
+  </section>
+  <section class="card s6">
+    <h2>{{ t('my_requests') }}</h2>
+    {% for r in reqs %}
+    <div class="note"><a href="/requests/{{ r.id }}">№{{ r.id }} · {{ TYPE[r.type] }}</a> <span class="st {{ r.status }}">{{ STATUS[r.status] }}</span></div>
+    {% else %}<p class="muted">Заявок пока нет. Создайте первую в разделе «Заявки».</p>{% endfor %}
+  </section>
+  <section class="card s6">
+    <h2>{{ t('my_courses') }}</h2>
+    {% for c in courses %}
+    <div class="note"><a href="/academy/{{ c.id }}">{{ c.title }}</a>
+      <div class="bar-p"><i style="width:{{ c.progress }}%"></i></div></div>
+    {% else %}<p class="muted">Курсы пока не назначены.</p>{% endfor %}
+  </section>
+  <section class="card s12">
+    <h2>{{ t('recent_notes') }}</h2>
+    {% for n in notes %}
+    <div class="note {{ 'new' if not n.is_read }}"><a href="{{ n.link }}">{{ n.text }}</a> <span class="muted">· {{ n.at }}</span></div>
+    {% else %}<p class="muted">Новых уведомлений нет.</p>{% endfor %}
+  </section>
+</div>
+{% endblock %}

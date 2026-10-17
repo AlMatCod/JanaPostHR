@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block content %}
+<h1 style="font-size:2rem">AI Jana</h1>
+<p class="lead">HR-ассистент отвечает только по базе знаний и показывает источник. Если ответа нет, он так и скажет.</p>
+<section class="card">
+  <div class="chat" id="chat"><div class="msg">Здравствуйте! Спросите, например: «Сколько дней отпуска положено?» или «Как оформить аванс?»</div></div>
+  <form class="ask" id="form">
+    <input id="q" placeholder="Ваш вопрос" maxlength="500" autocomplete="off" required>
+    <button class="btn" type="submit">{{ t('send') }}</button>
+  </form>
+</section>
+<script>
+const chat = document.getElementById('chat');
+function add(text, me, src){
+  const d = document.createElement('div'); d.className = 'msg' + (me ? ' me' : '');
+  d.textContent = text;
+  if (src) { const s = document.createElement('small'); s.textContent = 'Источник: ' + src; d.appendChild(s); }
+  chat.appendChild(d); chat.scrollTop = chat.scrollHeight; return d;
+}
+document.getElementById('form').onsubmit = async e => {
+  e.preventDefault();
+  const input = document.getElementById('q'), question = input.value.trim();
+  if (!question) return;
+  add(question, true); input.value = '';
+  const wait = add('AI Jana думает…', false);
+  try {
+    const r = await fetch('/api/ai', {method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({question})});
+    const j = await r.json(); wait.remove();
+    add(j.answer || j.error, false, j.source);
+  } catch (err) { wait.remove(); add('Сервис недоступен. Попробуйте ещё раз.', false); }
+};
+</script>
+{% endblock %}

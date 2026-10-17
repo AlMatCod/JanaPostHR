@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block content %}
+<p><a href="/academy">← Все курсы</a></p>
+<h1 style="font-size:2rem">{{ co.title }}</h1>
+<div class="grid">
+  <section class="card s6">
+    <h2>Материал</h2>
+    <p class="material">{{ co.material }}</p>
+    <div class="bar-p"><i style="width:{{ a.progress }}%"></i></div>
+    <p class="muted">Прогресс {{ a.progress }}%{% if a.score is not none %} · результат {{ a.score }}%{% endif %}</p>
+  </section>
+  <form class="card s6" method="post" action="/academy/{{ co.id }}/quiz">
+    <h2>Тест</h2>
+    {% for q in quiz %}
+    {% set qi = loop.index0 %}
+    <p><b>{{ q.q }}</b></p>
+    {% for o in q.o %}<label class="opt"><input type="radio" name="q{{ qi }}" value="{{ loop.index0 }}" required>{{ o }}</label>{% endfor %}
+    {% endfor %}
+    <p class="muted">Курс считается пройденным при результате от 60%.</p>
+    <button class="btn" type="submit">Завершить тест</button>
+  </form>
+</div>
+{% endblock %}

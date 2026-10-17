@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block content %}
+<p><a href="/requests">← Все заявки</a></p>
+<h1 style="font-size:2rem">Заявка №{{ r.id }} · {{ TYPE[r.type] }}</h1>
+<div class="grid">
+  <section class="card s6">
+    <h2>Карточка</h2>
+    <dl class="kv">
+      <dt>Сотрудник</dt><dd>{{ r.emp }}</dd>
+      <dt>Статус</dt><dd><span class="st {{ r.status }}">{{ STATUS[r.status] }}</span></dd>
+      {% if r.type == 'vacation' %}<dt>Период</dt><dd>{{ r.start_date }} — {{ r.end_date }}</dd>
+      {% else %}<dt>Сумма</dt><dd>{{ r.amount }} ₸</dd>{% endif %}
+      <dt>Комментарий</dt><dd>{{ r.comment or '—' }}</dd>
+      <dt>Создана</dt><dd>{{ r.created_at }}</dd>
+    </dl>
+    {% if decide %}
+    <form method="post" action="/requests/{{ r.id }}/decide" style="margin-top:20px">
+      <label>Комментарий к решению<input name="note"></label>
+      <button class="btn" name="action" value="approve">Согласовать</button>
+      <button class="btn bad" name="action" value="reject">Отклонить</button>
+    </form>
+    {% endif %}
+  </section>
+  <section class="card s6">
+    <h2>История</h2>
+    <ul class="tl">
+      {% for h in hist %}
+      <li><b>{{ STATUS[h.status] }}</b><br>{{ h.actor }} · {{ h.at }}<br><span class="muted">{{ h.note }}</span></li>
+      {% endfor %}
+    </ul>
+  </section>
+</div>
+{% endblock %}
