@@ -1,5 +1,15 @@
-# Snalma #0.2 · Made by #34Team · Supported by IST
+#┌─────────────────────────────────────────────────────────────────────┐
+#│ ████  █      ███  ████  █      ███     █   █ ████       █     ████  │
+#│ █   █ █     █   █ █   █ █     █   █    █   █ █   █     ██         █ │
+#│ ████  █     █████ ████  █     █████    █████ ████       █      ███  │
+#│ █   █ █     █   █ █   █ █     █   █    █   █ █  █       █         █ │
+#│ ████  █████ █   █ ████  █████ █   █    █   █ █   █    █████ █ ████  │
+#└─────────────────────────────────────────────────────────────────────┘
+# Made by #34Team
+# For Post-Tech Hackathon 2026
+
 # Programmer: Alexey Makarenko
+
 import json
 import os
 from datetime import date
@@ -281,3 +291,6 @@ async def ai_ask(request: Request):
         return {"answer": "Я не раскрываю данные других сотрудников. Могу ответить на общие HR-вопросы.",
                 "source": None, "escalate": False}
     return await run_in_threadpool(ai.chat, question)
+
+
+# Привета я бедни программист и я закончил в 23:13 писать это 🔥

@@ -88,3 +88,6 @@ footer small{display:block;margin-top:24px;color:#9fc79a}
 
 @media(max-width:800px){.hero{grid-template-columns:1fr}.s4,.s6,.s8{grid-column:span 12}.chip{display:none}}
 @media(prefers-reduced-motion:reduce){*{transition:none!important}}
+
+
+/* мне вот реально интерестно это ктото читает ли 😭 */
