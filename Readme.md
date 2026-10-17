@@ -1,9 +1,9 @@
-## JanaPostHR Blablacodr
+# JanaPostHR Blablacodr
 
-# 🔥Made by #34Team🔥
-# For Post-Tech Hackathon 2026
+## 🔥Made by #34Team🔥
+## For Post-Tech Hackathon 2026
 
-# Programmer: Alexey Makarenko
+### Programmer: Alexey Makarenko
 
 Прототип единой HR-платформы
 
